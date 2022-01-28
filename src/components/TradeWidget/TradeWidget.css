@@ -1,0 +1,45 @@
+.trade-container {
+  background: #02164c;
+  border-radius: 2.4rem;
+  padding: 2rem 1.5rem;
+  max-width: 48rem;
+  width: 100%;
+}
+
+/* .trade-button-container {
+} */
+
+.trade-swap-icon {
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+  z-index: 4;
+  position: absolute;
+  top: 49%;
+  right: 48%;
+  background: #02164c;
+  border-radius: 1rem;
+  padding: 0.4rem 1rem;
+}
+
+.trade-header {
+  color: #fff;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.trade-input-forms {
+  position: relative;
+}
+.trade-input-forms select,
+.trade-input-forms span {
+  position: absolute;
+  right: 1.3rem;
+  top: 2.8rem;
+  border: none;
+  width: 7.5rem;
+  font-size: 2.2rem;
+  outline: none;
+  color: #02164c;
+  font-weight: bold;
+}

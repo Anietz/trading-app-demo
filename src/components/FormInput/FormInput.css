@@ -1,0 +1,43 @@
+.input-label {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.07rem;
+  color: #02164c;
+  transition: 0.3s;
+}
+
+.input-block {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem 0.8rem;
+  border: 0.1rem solid #ddd;
+  border-radius: 0.4rem;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+  background-color: #fff;
+}
+.input-block input {
+  outline: 0;
+  border: 0;
+  padding: 0.4rem 0 0;
+  font-size: 1.8rem;
+}
+.input-block input::-moz-placeholder {
+  color: #02164c;
+  opacity: 1;
+}
+.input-block input:-ms-input-placeholder {
+  color: #02164c;
+  opacity: 1;
+}
+.input-block input::placeholder {
+  color: #02164c;
+  opacity: 1;
+}
+.input-block:focus-within {
+  border-color: #02164c;
+}
+.input-block:focus-within .input-label {
+  color: #02164c;
+}

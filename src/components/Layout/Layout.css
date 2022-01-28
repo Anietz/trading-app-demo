@@ -1,0 +1,23 @@
+.layout-header {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  flex-grow: 1;
+  height: 100vh;
+  background-color: rgb(247, 249, 252);
+  margin-top: 5rem;
+  overflow: auto;
+}
+
+.container-block {
+  display: block;
+  font-size: 4rem;
+  background-color: rgb(247, 249, 252);
+  margin-top: 5rem;
+  overflow: auto;
+}

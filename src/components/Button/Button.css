@@ -1,0 +1,20 @@
+.primary-btn {
+  border-radius: 5px;
+  color: #1a1919;
+  padding: 12px 45px;
+  border: none;
+  background: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.primary-btn-outline {
+  background-color: #fff;
+  color: #02164c;
+  border: 1px solid #02164c;
+}
+
+.active {
+  background-color: #02164c;
+  color: #fff;
+}
