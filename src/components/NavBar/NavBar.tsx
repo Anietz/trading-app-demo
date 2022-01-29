@@ -7,9 +7,14 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { ButtonTypes } from '../Button/types';
 import LoginModal from '../LoginModal';
 import { useNavigate,useLocation } from 'react-router-dom';
+import {useDispatch,useSelector} from 'react-redux';
+import {RootState} from "../../store/reducers";
 
 const NavBar:FunctionComponent = ()=>{
-    const [isLoginModalOpen,setIsLoginModalOpen] = React.useState<boolean>(false);
+    const loginStatus = useSelector((state:RootState)=>state.login.isLogin);
+    const userInfo = useSelector((state:RootState)=>state.login.user);
+    const modalStatus = useSelector((state:RootState)=>state.login.modalStatus);
+    const dispatch = useDispatch();
     const routeNavigator = useNavigate();
     const router = useLocation();
 
@@ -17,25 +22,18 @@ const NavBar:FunctionComponent = ()=>{
     const currentPath = pathname.split("/")[1];
 
 
-    const userInfo = {
-        name: 'John Doe',
-        isLoggedIn:false
-    }
-
 
     const handleLoginModalOpen = ()=>{
-        setIsLoginModalOpen(true);
+        dispatch({type:"SET_MODAL_STATUS",payload:true});
     }
 
     const handleLoginModalClose = ()=>{
-        setIsLoginModalOpen(false);
+        dispatch({type:"SET_MODAL_STATUS",payload:false});
     }
 
     const handleGoPage = (page:PAGES)=>{
         routeNavigator(`/${ page === PAGES.HOME ?'':page}`);
     }
-
-
 
 
     return (
@@ -60,7 +58,7 @@ const NavBar:FunctionComponent = ()=>{
                     </ul>
                     <div className="login-btn-container">
                         {
-                            !userInfo.isLoggedIn && 
+                            !loginStatus && 
                             <Button type={ButtonTypes.primaryOutline} onClick={()=>{handleLoginModalOpen()}} >
                                 Login
                             </Button>
@@ -68,12 +66,14 @@ const NavBar:FunctionComponent = ()=>{
                         }
                     </div>
 
-                         { userInfo.isLoggedIn &&
+                         { loginStatus &&
                             <div className="user-profile">
                                     <FontAwesomeIcon style={{fontSize:"4rem"}}  icon={faUserCircle}  />                          
                                     <div>
-                                        <span className="user-name">Hi, {userInfo.name}</span><br/>
-                                        <span className="user-name">Logout</span>
+                                        <span className="user-name">Hi, {userInfo.email}</span><br/>
+                                        <span style={{cursor:"pointer"}} onClick={()=>{
+                                            dispatch({type:"SET_LOGOUT"});
+                                        }} className="user-name">Logout</span>
                                     </div>
                             </div>
                            
@@ -81,7 +81,7 @@ const NavBar:FunctionComponent = ()=>{
                 </div>
 
             </nav>
-            <LoginModal handleClose={handleLoginModalClose} isOpen={isLoginModalOpen} />
+            <LoginModal handleClose={handleLoginModalClose} isOpen={modalStatus} />
         </>
 
     );

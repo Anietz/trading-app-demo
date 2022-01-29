@@ -7,9 +7,12 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from "react-query";
 import {getExchangeRate} from "../../services/ExchangeRateService"
 import { ExchangeRateResponseInterface } from "../../interface/CryptoExchangeRateResponseInterface";
+import {useSelector} from 'react-redux';
+import {RootState} from "../../store/reducers";
 
 
 const TradeWidget: FunctionComponent = () => {
+    const loginStatus = useSelector((state:RootState)=>state.login.isLogin);
     const [normalDisplay,setNormalDisplay] = useState<boolean>(true);
     const [cryptoAmount,setCryptoAmount] = useState<any>("");
     const [fiatAmount,setFiatAmount] = useState<any>("");
@@ -124,9 +127,12 @@ const TradeWidget: FunctionComponent = () => {
 
 
              <div className="text-center trade-button-container">
-                 <Button style={ButtonStyle} onClick={()=>{}} type={ButtonTypes.primaryOutline} >
+                {loginStatus && <Button style={ButtonStyle} onClick={()=>{alert("Swapping now")}} type={ButtonTypes.primaryOutline} >
+                    Swap
+                </Button> }
+                {!loginStatus && <Button style={ButtonStyle} onClick={()=>{alert("Login to continue swapping")}} type={ButtonTypes.primaryOutline} >
                     Login to continue
-                </Button>
+                </Button>}
              </div>
            </div>
         </>

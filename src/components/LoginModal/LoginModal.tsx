@@ -3,9 +3,24 @@ import "./LoginModal.css";
 import {ModalProps} from "./types";
 import Button from "../Button";
 import FormInput,{FormInputType} from "../FormInput";
+import {useDispatch} from 'react-redux';
+import {login} from '../../services/AuthService';
 
 
 const Modal:FunctionComponent<ModalProps> = ({isOpen,handleClose}) => {
+    const dispatch  =  useDispatch();
+    const [email,setEmail] = React.useState("");
+    const [password,setPassword] = React.useState("");
+
+    const loginNow = async () => {
+        try {
+            await login(email,password);
+            dispatch({type:"SET_LOGIN_STATUS",payload:{modalStatus:false,isLogin:true,user:{email:email}}});
+        } catch (error:any) {
+            alert(error);
+            console.error(`${error}`);
+        }
+    }
 
     return (
         <>
@@ -14,10 +29,10 @@ const Modal:FunctionComponent<ModalProps> = ({isOpen,handleClose}) => {
                 <div className="modal-left">
                 <h1 className="modal-title">Welcome!</h1>
                 <p className="modal-desc">Login to start trading.</p>
-                <FormInput type={FormInputType.email} onChange={()=>{}} id="email" 
+                <FormInput type={FormInputType.email} value={email} onChange={(e)=>setEmail(e.target.value)} id="email" 
                 name="email" placeholder="Enter your email" label="Email"  />
                 
-                <FormInput type={FormInputType.password} onChange={()=>{}} id="password" 
+                <FormInput type={FormInputType.password} value={password} onChange={(e)=>setPassword(e.target.value)} id="password" 
                 name="password" placeholder="Enter your password" label="Password"  />
 
                 <div className="modal-buttons">
@@ -28,7 +43,7 @@ const Modal:FunctionComponent<ModalProps> = ({isOpen,handleClose}) => {
                         transition: "0.3s",
                         fontSize: "1.2rem",
                         fontWeight:"100"
-                    }} isActive={true} onClick={()=>{alert("logging in")}} >
+                    }} isActive={true} onClick={()=>loginNow()} >
                         Login
                     </Button>
                 </div>
