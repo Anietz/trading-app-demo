@@ -15,7 +15,7 @@ const Table:FunctionComponent<CoinListTableProps> = ({data}) => {
             <thead>
                 <tr>
                 <th>Coin Name</th>
-                <th>Price ($)</th>
+                <th>Price</th>
                 <th>Action</th>
                 </tr>
             </thead>

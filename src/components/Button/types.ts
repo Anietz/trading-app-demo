@@ -5,7 +5,7 @@ export enum ButtonTypes {
 
 export type ButtonProps = {
   children: React.ReactNode;
-  onClick:()=>void;
+  onClick?:()=>void;
   isActive?:boolean;
   type?:ButtonTypes;
   style?:React.CSSProperties;

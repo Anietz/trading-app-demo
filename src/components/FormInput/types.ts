@@ -8,7 +8,7 @@ export enum FormInputType {
 export interface FormInputProps{
     value?: any;
     type:FormInputType;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     style?: React.CSSProperties;
     placeholder?: string;
     label?: string;
