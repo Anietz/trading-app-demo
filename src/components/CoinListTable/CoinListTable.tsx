@@ -1,7 +1,7 @@
 import React,{FunctionComponent} from  "react";
 import './CoinListTable.css';
 import {CoinListTableProps} from './types';
-import Button, { ButtonTypes } from '../Button';
+import ButtonPopup from '../ButtonPopup';
 
 const Table:FunctionComponent<CoinListTableProps> = ({data}) => {
     //Format a number to currency
@@ -26,10 +26,9 @@ const Table:FunctionComponent<CoinListTableProps> = ({data}) => {
                         <td> {item.name} ({item.symbol}) </td>
                         <td>${formatNumber(parseFloat(item.metrics.market_data.price_usd.toFixed(2)))}</td>
                         <td>
-                            <select className="select-input">
-                                <option value="buy">Buy</option>
-                                <option value="sell">Sell</option>
-                            </select>
+                            <ButtonPopup>
+                                Trade
+                            </ButtonPopup>
 
                         </td>
                     </tr>

@@ -9,7 +9,7 @@
 
 /*top bar cells*/
 .styled-table thead tr {
-  background-color: #02164c;
+  background-color: rgb(55, 63, 104);
   color: #ffffff;
   text-align: left;
 }
@@ -39,16 +39,6 @@
 
 /*hover effect*/
 .styled-table tbody tr:hover {
-  background-color: #02164c52;
+  background-color: rgb(205, 210, 238);
   color: #ffffff;
-}
-
-.select-input {
-  border: none;
-  outline: none;
-  background: #02164ce8;
-  color: #fff;
-  border-radius: 0.5rem;
-  padding: 0.8rem 1.4rem;
-  font-size: 1.5rem;
 }

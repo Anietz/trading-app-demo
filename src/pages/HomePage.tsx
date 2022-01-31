@@ -62,8 +62,8 @@ const HomePage:FunctionComponent = ()=>{
                     <FormInput placeholder="Search..." type={FormInputType.text} styleContainer={{width:"35%"}} onChange={(e)=>{searchString(e)}}  />
                 </div>
                  { isLoading && <div>Loading...</div>}
-                 {!isLoading && <CoinListTable data={result}  />}
-                 {!isLoading && <Button type={ButtonTypes.primary} isActive={true} onClick={()=>{fetchData()}}>Load More</Button>}
+                 {!isLoading && result && <CoinListTable data={result}  />}
+                 {!isLoading && result && <Button type={ButtonTypes.primary} isActive={true} onClick={()=>{fetchData()}}>Load More</Button>}
                
 
            </div>

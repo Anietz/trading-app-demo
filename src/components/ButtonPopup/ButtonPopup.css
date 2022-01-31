@@ -1,0 +1,22 @@
+.button-pop-wrapper {
+  position: relative;
+}
+
+.button-pop-wrapper ul {
+  list-style: none;
+  position: absolute;
+  top: -83px;
+  right: 101px;
+  background: #fff;
+  border-radius: 7px;
+  padding: 0;
+  box-shadow: 0px 1px 4px 2px #d3d3d38f;
+}
+
+.button-pop-wrapper ul li {
+  padding: 0px 10px;
+}
+
+.button-pop-wrapper ul li:nth-child(odd) {
+  border-bottom: 1px solid #d3d3d342;
+}

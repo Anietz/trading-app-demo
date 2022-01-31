@@ -12,6 +12,7 @@
   background-color: #fff;
   font-size: 1.8rem;
   font-weight: bold;
+  z-index: 4;
 }
 
 .navbar .navbar-nav {
