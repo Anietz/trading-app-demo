@@ -3,21 +3,41 @@ version: 2.1
 # Use a package of configuration called an orb.
 # Orchestrate or schedule a set of jobs
 jobs:
-  create_infrastructure: 
-      docker:
-        - image: amazon/aws-cli
-      steps:
-        - checkout
-        - run:
-            name: Create Cloudformation Stack
-            command: |
-              aws cloudformation deploy \
-                --template-file infrastructure.yml \
-                --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-                --region us-east-1
+  # create_infrastructure: 
+  #     docker:
+  #       - image: amazon/aws-cli
+  #     steps:
+  #       - checkout
+  #       - run:
+  #           name: Create Cloudformation Stack
+  #           command: |
+  #             aws cloudformation deploy \
+  #               --template-file infrastructure.yml \
+  #               --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+  #               --region us-east-1
+
+  # Exercise: Config and Deployment
+  configure_infrastructure: 
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+              # You can get this ID in the section where you registered the SSH Key
+              fingerprints: ["0e:ee:48:58:c5:77:a9:f5:d0:ba:c4:7f:ca:01:9c:58"] 
+      - run:
+          name: Install Ansible
+          command: |
+            # Install Ansible
+            apk add --update ansible
+      - run:
+          name: Run Playbook and Configure server
+          command: |
+            ansible-playbook -i inventory.txt main-remote.yml
 workflows:
   # Name the workflow "welcome"
-  welcome:
+  my_workflow:
     # Run the welcome/run job in its own container
     jobs:
-      - create_infrastructure
+     # - create_infrastructure
+      - configure_infrastructure
