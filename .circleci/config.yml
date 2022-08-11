@@ -3,22 +3,21 @@ version: 2.1
 # Use a package of configuration called an orb.
 # Orchestrate or schedule a set of jobs
 jobs:
-  print_hello:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run: echo hello now
-  print_world:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run: echo world
+  create_infrastructure: 
+      docker:
+        - image: amazon/aws-cli
+      steps:
+        - checkout
+        - run:
+            name: Create Cloudformation Stack
+            command: |
+              aws cloudformation deploy \
+                --template-file infrastructure.yml \
+                --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+                --region us-east-1
 workflows:
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - print_hello
-      - print_world:
-          requires:
-            - print_hello
+      - create_infrastructure
